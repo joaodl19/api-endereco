@@ -1,0 +1,77 @@
+openapi: 3.0.1
+
+info:
+  description: "API para consulta de endereços"
+  version: "1.0.0"
+  title: "Consulta Endereços"
+  contact:
+    email: "joao191195@gmail.com"
+
+paths:
+  /consulta-cep/{cep}:
+    get:
+      summary: Consulta informações do CEP
+      description: Retorna informações detalhadas sobre o CEP informado.
+      parameters:
+        - name: cep
+          in: path
+          description: O CEP a ser consultado
+          required: true
+          schema:
+            type: string
+            example: "91420-270"
+      responses:
+        '200':
+          description: Sucesso na consulta do CEP
+          content:
+            application/json:
+              schema:
+                '#/schemas/DetalhesCEP'
+        '400':
+          description: Solicitação malformada ou inválida
+        '404':
+          description: CEP não encontrado
+
+schemas:
+  DetalhesCEP:
+    type: object
+    properties:
+      cep:
+        type: string
+        example: "91420-270"
+      logradouro:
+        type: string
+        example: "Rua São Domingos"
+      complemento:
+        type: string
+        example: ""
+      unidade:
+        type: string
+        example: ""
+      bairro:
+        type: string
+        example: "Bom Jesus"
+      localidade:
+        type: string
+        example: "Porto Alegre"
+      uf:
+        type: string
+        example: "RS"
+      estado:
+        type: string
+        example: "Rio Grande do Sul"
+      regiao:
+        type: string
+        example: "Sul"
+      ibge:
+        type: string
+        example: "4314902"
+      gia:
+        type: string
+        example: ""
+      ddd:
+        type: string
+        example: "51"
+      siafi:
+        type: string
+        example: "8801"
